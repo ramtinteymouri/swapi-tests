@@ -1,0 +1,27 @@
+{
+  "name": "swapi-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "prebuild": "echo 'Cleaning up JavaScript files...' && find . -name '*.js' ! -path './node_modules/*' -delete",
+    "build": "npx tsc -p tsconfig.json",
+    "test": "npm run build && mocha --timeout 10000 tests/**/*.test.js",
+    "test-file": "npm run prebuild && npm run build && mocha --timeout 10000"
+  },
+  "type": "module",
+  "author": "Ramtin Mehraban Teymouri",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.17",
+    "chai": "^5.1.0",
+    "mocha": "^10.3.0",
+    "typescript": "^5.3.3"
+  }
+}
