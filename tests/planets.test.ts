@@ -22,8 +22,10 @@ describe('Testing the planets Endpoint from SWAPI', async function () {
     it('should have the correct properties with the planet number', async function () {
         const planetWithNumberResponse = await getEndpoints('planets', planetId);
         // Asserting that each property defined in PLANETS_PROPERTIES exists in the response data
+        // Also validating the format of each property
         for (const property of PLANETS_PROPERTIES) {
-            expect(planetWithNumberResponse.data).to.have.property(property);
+            expect(planetWithNumberResponse.data).to.have.property(property.name);
+            expect(typeof planetWithNumberResponse.data[property.name], `the property: "${property.name}" format is not correct`).to.be.equal(property.format);
         }
     });
 

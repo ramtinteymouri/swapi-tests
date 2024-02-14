@@ -22,8 +22,10 @@ describe('Testing the starships Endpoint from SWAPI', async function () {
     it('should have the correct properties with the starships number', async function () {
         const starshipWithNumberResponse = await getEndpoints('starships', starshipId);
         // Asserting that each property defined in STARSHIPS_PROPERTIES exists in the response data
+        // Also validating the format of each property
         for (const property of STARSHIPS_PROPERTIES) {
-            expect(starshipWithNumberResponse.data).to.have.property(property);
+            expect(starshipWithNumberResponse.data).to.have.property(property.name);
+            expect(typeof starshipWithNumberResponse.data[property.name], `the property: "${property.name}" format is not correct`).to.be.equal(property.format);
         }
     });
 

@@ -22,8 +22,10 @@ describe('Testing the species Endpoint from SWAPI', async function () {
     it('should have the correct properties with the species number', async function () {
         const speciesWithNumberResponse = await getEndpoints('species', speciesId);
         // Asserting that each property defined in SPECIES_PROPERTIES exists in the response data
+        // Also validating the format of each property
         for (const property of SPECIES_PROPERTIES) {
-            expect(speciesWithNumberResponse.data).to.have.property(property);
+            expect(speciesWithNumberResponse.data).to.have.property(property.name);
+            expect(typeof speciesWithNumberResponse.data[property.name], `the property: "${property.name}" format is not correct`).to.be.equal(property.format);
         }
     });
 

@@ -22,8 +22,10 @@ describe('Testing the people Endpoint from SWAPI', async function () {
     it('should have the correct properties with the person number', async function () {
         const personWithNumberResponse = await getEndpoints('people', personId);
         // Asserting that each property defined in PEOPLE_PROPERTIES exists in the response data
+        // Also validating the format of each property
         for (const property of PEOPLE_PROPERTIES) {
-            expect(personWithNumberResponse.data).to.have.property(property);
+            expect(personWithNumberResponse.data).to.have.property(property.name);
+            expect(typeof personWithNumberResponse.data[property.name], `the property: "${property.name}" format is not correct`).to.be.equal(property.format);
         }
     });
 
